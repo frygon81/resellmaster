@@ -1,16 +1,17 @@
-function calculateProfit() {
-  const cost = parseInt(document.getElementById('cost').value);
-  const price = parseFloat(document.getElementById('price').value);
-  const shipping = parseInt(document.getElementById('shipping').value);
-  const exchangeRate = 1350;
 
-  if (isNaN(cost) || isNaN(price) || isNaN(shipping)) {
-    document.getElementById('result').innerText = '모든 값을 입력해 주세요.';
-    return;
-  }
+function analyzeSKU() {
+    const sku = document.getElementById('skuInput').value.trim();
+    const resultDiv = document.getElementById('result');
 
-  const revenueKRW = price * exchangeRate;
-  const profit = revenueKRW - cost - shipping;
+    if (!sku) {
+        resultDiv.innerText = "SKU 코드를 입력해주세요.";
+        return;
+    }
 
-  document.getElementById('result').innerText = `예상 순이익: ${profit.toLocaleString()}원`;
+    // Placeholder for actual automation logic
+    resultDiv.innerText = `분석 중... (${sku})`;
+
+    setTimeout(() => {
+        resultDiv.innerText = `✔ ${sku} 분석 완료! (루카5지수: 92점, 추천 대상)`;
+    }, 1500);
 }

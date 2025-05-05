@@ -1,29 +1,19 @@
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>루카 리셀마스터</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <title>루카 리셀마스터</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>루카 리셀마스터 앱</h1>
-    <label for="sku">SKU (모델번호)</label>
-    <input type="text" id="sku" placeholder="예: IH1321" />
-
-    <label for="cost">국내 원가 (₩)</label>
-    <input type="number" id="cost" placeholder="예: 85000" />
-
-    <label for="price">해외 판매가 ($)</label>
-    <input type="number" id="price" placeholder="예: 139.99" />
-
-    <label for="shipping">배송비 및 수수료 (₩)</label>
-    <input type="number" id="shipping" placeholder="예: 18000" />
-
-    <button onclick="calculateProfit()">수익 분석</button>
-    <div class="result" id="result"></div>
-  </div>
-  <script src="script.js"></script>
+    <div class="container">
+        <h1>루카 리셀마스터</h1>
+        <p>SKU 코드만 입력하면 자동 분석해드려요.</p>
+        <input type="text" id="skuInput" placeholder="예: DH2925-111">
+        <button onclick="analyzeSKU()">분석</button>
+        <div id="result"></div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>

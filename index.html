@@ -1,19 +1,98 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <title>루카 리셀마스터</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>루카 리셀마스터</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f4f4f4;
+      padding: 40px;
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      width: 300px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-left: 10px;
+    }
+    .result {
+      margin-top: 30px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      display: inline-block;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: center;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>루카 리셀마스터</h1>
-        <p>SKU 코드만 입력하면 자동 분석해드려요.</p>
-        <input type="text" id="skuInput" placeholder="예: DH2925-111">
-        <button onclick="analyzeSKU()">분석</button>
-        <div id="result"></div>
-    </div>
-    <script src="script.js"></script>
+  <h1>루카 리셀마스터</h1>
+  <p>SKU 코드를 입력하면 자동 분석해드려요.</p>
+  <input type="text" id="sku" placeholder="예: FQ1833-001" />
+  <button onclick="analyzeSKU()">분석</button>
+
+  <div class="result" id="resultBox" style="display:none;">
+    <h3 id="skuInfo">분석 결과</h3>
+    <table>
+      <tr><th>항목</th><th>값</th></tr>
+      <tr><td>국내 원가</td><td id="costPrice">-</td></tr>
+      <tr><td>해외 평균가</td><td id="globalPrice">-</td></tr>
+      <tr><td>이베이 수수료</td><td id="fee">-</td></tr>
+      <tr><td>국제배송비</td><td id="shipping">-</td></tr>
+      <tr><td>포장비</td><td id="packaging">-</td></tr>
+      <tr><td><strong>예상 순이익</strong></td><td id="profit"><strong>-</strong></td></tr>
+      <tr><td>루카5지수</td><td id="score">-</td></tr>
+    </table>
+    <p id="summary"></p>
+  </div>
+
+  <script>
+    function analyzeSKU() {
+      const sku = document.getElementById("sku").value;
+      if (!sku) return alert("SKU 코드를 입력하세요.");
+
+      // 샘플 분석 데이터
+      const data = {
+        costPrice: 89000,
+        globalPrice: 175000,
+        fee: 22750,
+        shipping: 15000,
+        packaging: 2000,
+        score: 92
+      };
+
+      const profit = data.globalPrice - (data.costPrice + data.fee + data.shipping + data.packaging);
+
+      document.getElementById("skuInfo").innerText = `${sku} 분석 결과:`;
+      document.getElementById("costPrice").innerText = data.costPrice.toLocaleString() + "원";
+      document.getElementById("globalPrice").innerText = data.globalPrice.toLocaleString() + "원";
+      document.getElementById("fee").innerText = data.fee.toLocaleString() + "원";
+      document.getElementById("shipping").innerText = data.shipping.toLocaleString() + "원";
+      document.getElementById("packaging").innerText = data.packaging.toLocaleString() + "원";
+      document.getElementById("profit").innerText = profit.toLocaleString() + "원";
+      document.getElementById("score").innerText = `${data.score}점 (추천 대상)`;
+      document.getElementById("summary").innerText = `✔ ${sku} 분석 완료! (루카5지수: ${data.score}점)`;
+
+      document.getElementById("resultBox").style.display = "block";
+    }
+  </script>
 </body>
 </html>

@@ -10,7 +10,7 @@ document.getElementById("analyzeBtn").addEventListener("click", async function (
   }
 
   try {
-    const response = await fetch("https://script.google.com/macros/s/AKfycbyYnlrn6Ol3xhsTWKc_PxuhOg97PZHRPMAqKmhhffy41nk4Kn0sp_MA4XB0AZLJaa8n/exec?sku=" + sku);
+    const response = await fetch(https://script.google.com/macros/s/AKfycbyCQmmpDJRYqqXxnJoL9ZWTbF5bfjASxYNGb7Xp6y1GtAaITM2dnUZV7bBuBw6rtnCPg/exec);
     const data = await response.json();
 
     if (data.status === "success") {
